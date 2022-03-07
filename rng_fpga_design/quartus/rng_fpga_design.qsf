@@ -428,6 +428,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADB_OR
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADB_SPI_CS
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AD_SCLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AD_SDIO
+set_global_assignment -name VERILOG_FILE ../hdl/adc_interface_ctrl.v
 set_global_assignment -name SDC_FILE ../sdc/rng_fpga_design.sdc
 set_global_assignment -name VERILOG_FILE ../hdl/rng_fpga_design_top.v
 set_global_assignment -name QSYS_FILE ../qsys/system.qsys

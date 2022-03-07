@@ -22,3 +22,7 @@ rng_fpga_design/quartus/output_files/
 rng_fpga_design/quartus/incremental_db/
 
 rng_fpga_design/generated_files/
+
+*.html
+
+*.rpt
