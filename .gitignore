@@ -25,3 +25,7 @@ rng_fpga_design/generated_files/
 sd_image
 gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux
 *.o
+
+*.html
+
+*.rpt

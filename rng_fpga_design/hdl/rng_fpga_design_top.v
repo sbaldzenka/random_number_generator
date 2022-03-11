@@ -1,5 +1,8 @@
 
 module rng_fpga_design_top
+#(
+    parameter P_COUNTER_ENABLE = 1
+)
 (
     input         CLK_50,
     // GPIO
@@ -59,7 +62,21 @@ module rng_fpga_design_top
     output        ADB_SPI_CS
 );
 
-    wire hps_fpga_reset_n;
+    wire        hps_fpga_reset_n;
+
+    wire        ADA_CLK_P_SYS   ;
+    wire        ADA_CLK_N_SYS   ;
+    wire [13:0] ADA_D_SYS       ;
+    wire        ADA_DCO_SYS     ;
+    wire        ADA_OE_SYS      ;
+    wire        ADA_OR_SYS      ;
+
+    wire        ADB_CLK_P_SYS   ;
+    wire        ADB_CLK_N_SYS   ;
+    wire [13:0] ADB_D_SYS       ;
+    wire        ADB_DCO_SYS     ;
+    wire        ADB_OE_SYS      ;
+    wire        ADB_OR_SYS      ;
 
     system system_inst
     (
@@ -109,22 +126,68 @@ module rng_fpga_design_top
         .memory_mem_dm                         ( HPS_DDR3_DM         ),
         .memory_oct_rzqin                      ( HPS_DDR3_RZQ        ),
 
-        .terasic_ad9254_b_conduit_end_ad_clk_p ( ADB_CLK_P           ),
-        .terasic_ad9254_b_conduit_end_ad_clk_n ( ADB_CLK_N           ),
-        .terasic_ad9254_b_conduit_end_ad_d     ( ADB_D               ),
-        .terasic_ad9254_b_conduit_end_ad_dco   ( ADB_DCO             ),
-        .terasic_ad9254_b_conduit_end_ad_oe    ( ADB_OE              ),
-        .terasic_ad9254_b_conduit_end_ad_or    ( ADB_OR              ),
+        .terasic_ad9254_b_conduit_end_ad_clk_p ( ADB_CLK_P_SYS       ),
+        .terasic_ad9254_b_conduit_end_ad_clk_n ( ADB_CLK_N_SYS       ),
+        .terasic_ad9254_b_conduit_end_ad_d     ( ADB_D_SYS           ),
+        .terasic_ad9254_b_conduit_end_ad_dco   ( ADB_DCO_SYS         ),
+        .terasic_ad9254_b_conduit_end_ad_oe    ( ADB_OE_SYS          ),
+        .terasic_ad9254_b_conduit_end_ad_or    ( ADB_OR_SYS          ),
 
-        .terasic_ad9254_a_conduit_end_ad_clk_p ( ADA_CLK_P           ),
-        .terasic_ad9254_a_conduit_end_ad_clk_n ( ADA_CLK_N           ),
-        .terasic_ad9254_a_conduit_end_ad_d     ( ADA_D               ),
-        .terasic_ad9254_a_conduit_end_ad_dco   ( ADA_DCO             ),
-        .terasic_ad9254_a_conduit_end_ad_oe    ( ADA_OE              ),
-        .terasic_ad9254_a_conduit_end_ad_or    ( ADA_OR              ),
+        .terasic_ad9254_a_conduit_end_ad_clk_p ( ADA_CLK_P_SYS       ),
+        .terasic_ad9254_a_conduit_end_ad_clk_n ( ADA_CLK_N_SYS       ),
+        .terasic_ad9254_a_conduit_end_ad_d     ( ADA_D_SYS           ),
+        .terasic_ad9254_a_conduit_end_ad_dco   ( ADA_DCO_SYS         ),
+        .terasic_ad9254_a_conduit_end_ad_oe    ( ADA_OE_SYS          ),
+        .terasic_ad9254_a_conduit_end_ad_or    ( ADA_OR_SYS          ),
 
         .hps_0_f2h_stm_hw_events_stm_hwevents  (                     ),
         .leds_pio_0_external_connection_export ( LEDS                )
+    );
+
+    adc_interface_ctrl
+    #(
+        .P_COUNTER_ENABLE ( P_COUNTER_ENABLE )
+    )
+    adc_interface_a_ctrl_inst
+    (
+        .reset_n      ( hps_fpga_reset_n ),
+
+        .AD_CLK_P_IC  ( ADA_CLK_P        ),
+        .AD_CLK_N_IC  ( ADA_CLK_N        ),
+        .AD_D_IC      ( ADA_D            ),
+        .AD_DCO_IC    ( ADA_DCO          ),
+        .AD_OE_IC     ( ADA_OE           ),
+        .AD_OR_IC     ( ADA_OR           ),
+
+        .AD_CLK_P_SYS ( ADA_CLK_P_SYS    ),
+        .AD_CLK_N_SYS ( ADA_CLK_N_SYS    ),
+        .AD_D_SYS     ( ADA_D_SYS        ),
+        .AD_DCO_SYS   ( ADA_DCO_SYS      ),
+        .AD_OE_SYS    ( ADA_OE_SYS       ),
+        .AD_OR_SYS    ( ADA_OR_SYS       )
+    );
+
+    adc_interface_ctrl
+    #(
+        .P_COUNTER_ENABLE ( P_COUNTER_ENABLE )
+    )
+    adc_interface_b_ctrl_inst
+    (
+        .reset_n      ( hps_fpga_reset_n ),
+
+        .AD_CLK_P_IC  ( ADB_CLK_P        ),
+        .AD_CLK_N_IC  ( ADB_CLK_N        ),
+        .AD_D_IC      ( ADB_D            ),
+        .AD_DCO_IC    ( ADB_DCO          ),
+        .AD_OE_IC     ( ADB_OE           ),
+        .AD_OR_IC     ( ADB_OR           ),
+
+        .AD_CLK_P_SYS ( ADB_CLK_P_SYS    ),
+        .AD_CLK_N_SYS ( ADB_CLK_N_SYS    ),
+        .AD_D_SYS     ( ADB_D_SYS        ),
+        .AD_DCO_SYS   ( ADB_DCO_SYS      ),
+        .AD_OE_SYS    ( ADB_OE_SYS       ),
+        .AD_OR_SYS    ( ADB_OR_SYS       )
     );
 
     assign  AD_SCLK    = 1;                // (DFS)Data Format Select
