@@ -18,7 +18,6 @@ rng_fpga_design/quartus/system.sopcinfo
 rng_fpga_design/quartus/rng_fpga_design.qws
 rng_fpga_design/quartus/hps_sdram_p0_summary.csv
 rng_fpga_design/quartus/output_files/
-
 rng_fpga_design/quartus/incremental_db/
-
 rng_fpga_design/generated_files/
+*.rpt
