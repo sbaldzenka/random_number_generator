@@ -1,7 +1,7 @@
 
 module rng_fpga_design_top
 #(
-    parameter P_COUNTER_ENABLE = 1
+    parameter P_COUNTER_ENABLE = 0
 )
 (
     input         CLK_50,
