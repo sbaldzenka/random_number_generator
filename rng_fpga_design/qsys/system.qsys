@@ -147,6 +147,22 @@
          type = "String";
       }
    }
+   element system
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element system
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
@@ -959,7 +975,7 @@
   <parameter name="gui_output_clock_frequency8" value="100.0" />
   <parameter name="gui_output_clock_frequency9" value="100.0" />
   <parameter name="gui_phase_shift0" value="0" />
-  <parameter name="gui_phase_shift1" value="0" />
+  <parameter name="gui_phase_shift1" value="5000" />
   <parameter name="gui_phase_shift10" value="0" />
   <parameter name="gui_phase_shift11" value="0" />
   <parameter name="gui_phase_shift12" value="0" />
@@ -1029,13 +1045,13 @@
    kind="altera_avalon_sysid_qsys"
    version="17.1"
    enabled="1">
-  <parameter name="id" value="18354721" />
+  <parameter name="id" value="18285602" />
  </module>
  <connection
    kind="avalon"
    version="17.1"
    start="TERASIC_AD9254_A.avalon_master"
-   end="onchip_memory_a.s2">
+   end="onchip_memory_a.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
@@ -1044,7 +1060,7 @@
    kind="avalon"
    version="17.1"
    start="TERASIC_AD9254_B.avalon_master"
-   end="onchip_memory_b.s2">
+   end="onchip_memory_b.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
@@ -1053,7 +1069,7 @@
    kind="avalon"
    version="17.1"
    start="hps_0.h2f_axi_master"
-   end="onchip_memory_a.s1">
+   end="onchip_memory_a.s2">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00020000" />
   <parameter name="defaultConnection" value="false" />
@@ -1062,7 +1078,7 @@
    kind="avalon"
    version="17.1"
    start="hps_0.h2f_axi_master"
-   end="onchip_memory_b.s1">
+   end="onchip_memory_b.s2">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00040000" />
   <parameter name="defaultConnection" value="false" />

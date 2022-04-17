@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="system" kind="system" version="1.0" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2022.01.23.03:15:54 -->
+ <!-- 2022.04.17.21:04:21 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1642896851</value>
+  <value>1650218626</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -943,8 +943,8 @@ parameters are a RESULT of the module parameters. -->
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_a</moduleName>
-    <slaveName>s2</slaveName>
-    <name>onchip_memory_a.s2</name>
+    <slaveName>s1</slaveName>
+    <name>onchip_memory_a.s1</name>
     <baseAddress>0</baseAddress>
     <span>100000</span>
    </memoryBlock>
@@ -1798,8 +1798,8 @@ parameters are a RESULT of the module parameters. -->
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_b</moduleName>
-    <slaveName>s2</slaveName>
-    <name>onchip_memory_b.s2</name>
+    <slaveName>s1</slaveName>
+    <name>onchip_memory_b.s1</name>
     <baseAddress>0</baseAddress>
     <span>100000</span>
    </memoryBlock>
@@ -17609,16 +17609,16 @@ parameters are a RESULT of the module parameters. -->
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_a</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_a.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_a.s2</name>
     <baseAddress>131072</baseAddress>
     <span>100000</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_b</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_b.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_b.s2</name>
     <baseAddress>262144</baseAddress>
     <span>100000</span>
    </memoryBlock>
@@ -44472,16 +44472,16 @@ parameters are a RESULT of the module parameters. -->
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_a</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_a.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_a.s2</name>
     <baseAddress>131072</baseAddress>
     <span>100000</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_b</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_b.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_b.s2</name>
     <baseAddress>262144</baseAddress>
     <span>100000</span>
    </memoryBlock>
@@ -46387,16 +46387,16 @@ parameters are a RESULT of the module parameters. -->
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_a</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_a.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_a.s2</name>
     <baseAddress>3221356544</baseAddress>
     <span>100000</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_b</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_b.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_b.s2</name>
     <baseAddress>3221487616</baseAddress>
     <span>100000</span>
    </memoryBlock>
@@ -47258,16 +47258,16 @@ parameters are a RESULT of the module parameters. -->
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_a</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_a.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_a.s2</name>
     <baseAddress>3221356544</baseAddress>
     <span>100000</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory_b</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory_b.s1</name>
+    <slaveName>s2</slaveName>
+    <name>onchip_memory_b.s2</name>
     <baseAddress>3221487616</baseAddress>
     <span>100000</span>
    </memoryBlock>
@@ -78733,7 +78733,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_phase_shift1">
    <type>int</type>
-   <value>0</value>
+   <value>5000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -82374,11 +82374,11 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <assignment>
    <name>embeddedsw.CMacro.ID</name>
-   <value>18354721</value>
+   <value>18285602</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1642896851</value>
+   <value>1650218626</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -82394,11 +82394,11 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.id</name>
-   <value>18354721</value>
+   <value>18285602</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1642896851</value>
+   <value>1650218626</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -82406,7 +82406,7 @@ the requested settings for a module instance. -->
   </assignment>
   <parameter name="id">
    <type>int</type>
-   <value>18354721</value>
+   <value>18285602</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -82414,7 +82414,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1642896851</value>
+   <value>1650218626</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -92998,11 +92998,11 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>axi_slave0</endConnectionPoint>
  </connection>
  <connection
-   name="TERASIC_AD9254_A.avalon_master/onchip_memory_a.s2"
+   name="TERASIC_AD9254_A.avalon_master/onchip_memory_a.s1"
    kind="avalon"
    version="17.1"
    start="TERASIC_AD9254_A.avalon_master"
-   end="onchip_memory_a.s2">
+   end="onchip_memory_a.s1">
   <parameter name="arbitrationPriority">
    <type>int</type>
    <value>1</value>
@@ -93046,14 +93046,14 @@ parameters are a RESULT of the module parameters. -->
   <startModule>TERASIC_AD9254_A</startModule>
   <startConnectionPoint>avalon_master</startConnectionPoint>
   <endModule>onchip_memory_a</endModule>
-  <endConnectionPoint>s2</endConnectionPoint>
+  <endConnectionPoint>s1</endConnectionPoint>
  </connection>
  <connection
-   name="TERASIC_AD9254_B.avalon_master/onchip_memory_b.s2"
+   name="TERASIC_AD9254_B.avalon_master/onchip_memory_b.s1"
    kind="avalon"
    version="17.1"
    start="TERASIC_AD9254_B.avalon_master"
-   end="onchip_memory_b.s2">
+   end="onchip_memory_b.s1">
   <parameter name="arbitrationPriority">
    <type>int</type>
    <value>1</value>
@@ -93097,14 +93097,14 @@ parameters are a RESULT of the module parameters. -->
   <startModule>TERASIC_AD9254_B</startModule>
   <startConnectionPoint>avalon_master</startConnectionPoint>
   <endModule>onchip_memory_b</endModule>
-  <endConnectionPoint>s2</endConnectionPoint>
+  <endConnectionPoint>s1</endConnectionPoint>
  </connection>
  <connection
-   name="hps_0_bridges.h2f/onchip_memory_a.s1"
+   name="hps_0_bridges.h2f/onchip_memory_a.s2"
    kind="avalon"
    version="17.1"
    start="hps_0_bridges.h2f"
-   end="onchip_memory_a.s1">
+   end="onchip_memory_a.s2">
   <parameter name="arbitrationPriority">
    <type>int</type>
    <value>1</value>
@@ -93148,14 +93148,14 @@ parameters are a RESULT of the module parameters. -->
   <startModule>hps_0_bridges</startModule>
   <startConnectionPoint>h2f</startConnectionPoint>
   <endModule>onchip_memory_a</endModule>
-  <endConnectionPoint>s1</endConnectionPoint>
+  <endConnectionPoint>s2</endConnectionPoint>
  </connection>
  <connection
-   name="hps_0_bridges.h2f/onchip_memory_b.s1"
+   name="hps_0_bridges.h2f/onchip_memory_b.s2"
    kind="avalon"
    version="17.1"
    start="hps_0_bridges.h2f"
-   end="onchip_memory_b.s1">
+   end="onchip_memory_b.s2">
   <parameter name="arbitrationPriority">
    <type>int</type>
    <value>1</value>
@@ -93199,7 +93199,7 @@ parameters are a RESULT of the module parameters. -->
   <startModule>hps_0_bridges</startModule>
   <startConnectionPoint>h2f</startConnectionPoint>
   <endModule>onchip_memory_b</endModule>
-  <endConnectionPoint>s1</endConnectionPoint>
+  <endConnectionPoint>s2</endConnectionPoint>
  </connection>
  <connection
    name="hps_0_bridges.h2f/TERASIC_AD9254_A.slave"
