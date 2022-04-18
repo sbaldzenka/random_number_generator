@@ -71,6 +71,10 @@ module rng_fpga_design_top
     wire        ADA_OE_SYS      ;
     wire        ADA_OR_SYS      ;
 
+	 wire        adb_clk         ;
+	 wire        adb_clk_p_shift ;
+	 wire        adb_clk_n_shift ;
+	 
     wire        ADB_CLK_P_SYS   ;
     wire        ADB_CLK_N_SYS   ;
     wire [13:0] ADB_D_SYS       ;
@@ -175,8 +179,8 @@ module rng_fpga_design_top
     (
         .reset_n      ( hps_fpga_reset_n ),
 
-        .AD_CLK_P_IC  ( ADB_CLK_P        ),
-        .AD_CLK_N_IC  ( ADB_CLK_N        ),
+        .AD_CLK_P_IC  ( adb_clk          ),
+        .AD_CLK_N_IC  ( /* open port */  ),
         .AD_D_IC      ( ADB_D            ),
         .AD_DCO_IC    ( ADB_DCO          ),
         .AD_OE_IC     ( ADB_OE           ),
@@ -190,6 +194,16 @@ module rng_fpga_design_top
         .AD_OR_SYS    ( ADB_OR_SYS       )
     );
 
+	 pll_shift pll_shift_inst
+    (
+        .refclk   ( adb_clk       ), // refclk.clk
+        .rst      ( 'b0           ), // reset.reset
+        .outclk_0 ( adb_clk_shift )  // outclk0.clk
+    );
+	 
+	 assign ADB_CLK_P   = adb_clk_shift;
+    assign ADB_CLK_N   = ~adb_clk_shift;
+	 
     assign  AD_SCLK    = 1;                // (DFS)Data Format Select
     assign  AD_SDIO    = 0;                // (DCS)Duty Cycle Stabilizer Select
     assign  ADA_SPI_CS = 1'b1;             // disable ADA_SPI_CS (CSB)

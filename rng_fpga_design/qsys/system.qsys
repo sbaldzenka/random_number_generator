@@ -1045,7 +1045,7 @@
    kind="altera_avalon_sysid_qsys"
    version="17.1"
    enabled="1">
-  <parameter name="id" value="18285602" />
+  <parameter name="id" value="18351138" />
  </module>
  <connection
    kind="avalon"

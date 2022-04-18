@@ -23,19 +23,12 @@ module TERASIC_AD9254
     input  wire        AD_OR                // out of range
 );
 
-    // register
-    // addr 0 write:
-    //          bit 0: capture flag. rising trigger
-    //          bit 1~31: capture number (<= 50000)
-    // addr 0 read:
-    //          bit 0: done flag
-
     ////////////////
     // avalon slave
-    reg        flag_done/*synthesis noprune*/;
-    reg        flag_capture/*synthesis noprune*/;
-    reg [19:0] flag_capture_num/*synthesis noprune*/;
-    reg        flag_dummy_data/*synthesis noprune*/;
+    reg         flag_done/*synthesis noprune*/;
+    reg         flag_capture/*synthesis noprune*/;
+    reg  [19:0] flag_capture_num/*synthesis noprune*/;
+    reg         flag_dummy_data/*synthesis noprune*/;
 
     //wire reading_adc;
     wire        read_more;
@@ -49,30 +42,28 @@ module TERASIC_AD9254
 
     ////////////////
     // gen start capture signal
-    wire start_capture/* synthesis keep */;
-    reg  pre_flag_capture/*synthesis noprune */;
+    wire        start_capture/* synthesis keep */;
+    reg         pre_flag_capture/*synthesis noprune */;
 
-    ////////////////
-    // state
-    `define STATE_STANDYBY  2'd0
-    `define STATE_INIT      2'd1
-    `define STATE_CAPTURE   2'd2
-    `define STATE_DONE      2'd3
-
-    wire       state_capturing;
-    reg  [1:0] state /*synthesis noprune*/;
+    wire        state_capturing;
+    reg  [01:0] state /*synthesis noprune*/;
 
     //////////////////////////
     // write ADC data to fifo
     // ADC --> FIFO
     reg         fifo_aclr;
-    wire [13:0] fifo_data;
     wire        fifo_wrreq;
     wire        fifo_rdreq;
     wire        fifo_rdempty;
     wire        fifo_wrfull;
     wire [13:0] fifo_q;
 
+    // register
+    // addr 0 write:
+    //          bit 0: capture flag. rising trigger
+    //          bit 1~31: capture number (<= 50000)
+    // addr 0 read:
+    //          bit 0: done flag
     assign AD_CLK_P = clk;
     assign AD_CLK_N = ~clk;
     assign AD_OE    = 1'b0;// enable
@@ -99,6 +90,13 @@ module TERASIC_AD9254
         else
             pre_flag_capture <= flag_capture;
     end
+
+    ////////////////
+    // state
+    `define STATE_STANDYBY  2'd0
+    `define STATE_INIT      2'd1
+    `define STATE_CAPTURE   2'd2
+    `define STATE_DONE      2'd3
 
     assign state_capturing = (state == `STATE_CAPTURE) ? 1'b1 : 1'b0;
 
@@ -168,19 +166,18 @@ module TERASIC_AD9254
     end
 
     assign fifo_wrreq = state_capturing & read_more;
-    assign fifo_data  = flag_dummy_data ? read_cnt[13:0] : AD_D;
 
-    AD9254_FIFO fifo_inst
+    AD9254_FIFO fifo
     (
-        .aclr    ( fifo_aclr    ),
-        .data    ( fifo_data    ),
-        .rdclk   ( clk          ),
-        .rdreq   ( fifo_rdreq   ),
-        .wrclk   ( AD_DCO       ),
-        .wrreq   ( fifo_wrreq   ),
-        .q       ( fifo_q       ),
-        .rdempty ( fifo_rdempty ),
-        .wrfull  ( fifo_wrfull  )
+        .aclr    (fifo_aclr),
+        .data    (flag_dummy_data?read_cnt[13:0]:AD_D),
+        .rdclk   (clk),
+        .rdreq   (fifo_rdreq),
+        .wrclk   (AD_DCO),
+        .wrreq   (fifo_wrreq),
+        .q       (fifo_q),
+        .rdempty (fifo_rdempty),
+        .wrfull  (fifo_wrfull)
     );
 
     //////////////////////////
@@ -188,7 +185,7 @@ module TERASIC_AD9254
     // FIFO ---> Memory (MM Master Port)
     assign master_chip_select_n = fifo_rdempty & state_capturing;
     assign master_write         = ~fifo_rdempty & state_capturing;
-    assign master_writedata     = {fifo_q, 2'b00};
+    assign master_writedata     = {fifo_q,2'b00};
     assign fifo_rdreq           = master_write & master_waitrequest_n;
     assign master_addr          = write_cnt << 1;// one word = 2 bytes
 

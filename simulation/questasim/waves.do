@@ -2,12 +2,17 @@
 add wave -noupdate -divider testbench
 add wave -noupdate -format Logic -radix HEXADECIMAL  -group {testbench} /testbench/*
 
-add wave -noupdate -divider TERASIC_AD9254
-add wave -noupdate -format Logic -radix HEXADECIMAL  -group {TERASIC_AD9254} /testbench/TERASIC_AD9254_inst/*
+add wave -noupdate -divider TERASIC_AD9254_A
+add wave -noupdate -format Logic -radix HEXADECIMAL  -group {TERASIC_AD9254_A} /testbench/TERASIC_AD9254_A_inst/*
 
-add wave -noupdate -divider adc_interface_ctrl
-add wave -noupdate -format Logic -radix HEXADECIMAL  -group {adc_interface_ctrl} /testbench/adc_interface_ctrl_inst/*
+add wave -noupdate -divider TERASIC_AD9254_B
+add wave -noupdate -format Logic -radix HEXADECIMAL  -group {TERASIC_AD9254_B} /testbench/TERASIC_AD9254_B_inst/*
 
+add wave -noupdate -divider adc_interface_ctrl_a
+add wave -noupdate -format Logic -radix HEXADECIMAL  -group {adc_interface_ctrl_a} /testbench/adc_interface_ctrl_a_inst/*
+
+add wave -noupdate -divider adc_interface_ctrl_b
+add wave -noupdate -format Logic -radix HEXADECIMAL  -group {adc_interface_ctrl_b} /testbench/adc_interface_ctrl_b_inst/*
 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {1611 ps} 0}
