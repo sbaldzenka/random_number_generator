@@ -131,6 +131,14 @@
          type = "int";
       }
    }
+   element spi_0
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
    element sysid_qsys_0
    {
       datum _sortIndex
@@ -203,6 +211,11 @@
    dir="end" />
  <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="spi_0_external"
+   internal="spi_0.external"
+   type="conduit"
+   dir="end" />
  <interface
    name="terasic_ad9254_a_conduit_end"
    internal="TERASIC_AD9254_A.conduit_end"
@@ -1040,6 +1053,22 @@
   <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
   <parameter name="gui_use_locked" value="false" />
  </module>
+ <module name="spi_0" kind="altera_avalon_spi" version="17.1" enabled="1">
+  <parameter name="avalonSpec" value="2.0" />
+  <parameter name="clockPhase" value="0" />
+  <parameter name="clockPolarity" value="0" />
+  <parameter name="dataWidth" value="8" />
+  <parameter name="disableAvalonFlowControl" value="false" />
+  <parameter name="inputClockRate" value="50000000" />
+  <parameter name="insertDelayBetweenSlaveSelectAndSClk" value="false" />
+  <parameter name="insertSync" value="true" />
+  <parameter name="lsbOrderedFirst" value="false" />
+  <parameter name="masterSPI" value="true" />
+  <parameter name="numberOfSlaves" value="2" />
+  <parameter name="syncRegDepth" value="2" />
+  <parameter name="targetClockRate" value="128000" />
+  <parameter name="targetSlaveSelectToSClkDelay" value="0.0" />
+ </module>
  <module
    name="sysid_qsys_0"
    kind="altera_avalon_sysid_qsys"
@@ -1119,8 +1148,18 @@
   <parameter name="baseAddress" value="0x0010" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="hps_0.h2f_lw_axi_master"
+   end="spi_0.spi_control_port">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="clock" version="17.1" start="clk_0.clk" end="sysid_qsys_0.clk" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="leds_pio_0.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="spi_0.clk" />
  <connection
    kind="clock"
    version="17.1"
@@ -1188,6 +1227,7 @@
    version="17.1"
    start="clk_0.clk_reset"
    end="TERASIC_AD9254_B.reset" />
+ <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="spi_0.reset" />
  <connection
    kind="reset"
    version="17.1"
